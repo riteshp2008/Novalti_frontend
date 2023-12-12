@@ -17,6 +17,8 @@ const SignUpScreen = () => {
     formState: { errors },
   } = useForm();
 
+  helper();
+  
   const navigate = useNavigate();
 
   const { loading, success, user } = useSelector((state) => state.register);
