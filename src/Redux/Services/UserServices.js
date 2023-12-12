@@ -1,6 +1,7 @@
 import axios from "axios";
 
 let url = process.env.REACT_APP_URL || "http://localhost:5000/";
+console.log(url);
 
 export const registerUser = async (user) => {
   try {
@@ -11,6 +12,7 @@ export const registerUser = async (user) => {
     console.log(error);
   }
 };
+
 
 export const loginUser = async (user) => {
 try {
