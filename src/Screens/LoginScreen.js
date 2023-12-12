@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../Redux/Actions/UserActions";
-import { helper } from "../helper/helper";
 
 const LoginScreen = () => {
   const {
@@ -20,9 +19,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    helper();
     dispatch(loginAction(data));
-    Navigate("/users");
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +31,7 @@ const LoginScreen = () => {
   useEffect(() => {
     if (success && user) {
       localStorage.setItem("user", JSON.stringify(user));
+      window.location.href = "/users";
     }
   }, [success]);
   console.log(errors);
@@ -59,7 +57,11 @@ const LoginScreen = () => {
                     id="email"
                     name="email"
                     type="text"
-                    {...register("email", { required: "Email is required" })}
+                    {...register("email", { required: "Email is required" ,
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },})}
                     className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
                     placeholder="Email address"
                   />

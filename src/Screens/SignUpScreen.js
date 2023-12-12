@@ -18,7 +18,7 @@ const SignUpScreen = () => {
   } = useForm();
 
   helper();
-  
+
   const navigate = useNavigate();
 
   const { loading, success, user } = useSelector((state) => state.register);
@@ -56,7 +56,6 @@ const SignUpScreen = () => {
     };
 
     console.log(user);
-    helper();
     dispatch(registerAction(user));
   };
 
@@ -160,7 +159,8 @@ const togglePasswordVisibility = () => {
                     id="email"
                     name="email"
                     type="text"
-                    {...register("email", { required: "Email is required" })}
+                    {...register("email", { required: "Email is required",  
+                    pattern: {value: /^\S+@\S+$/i,message: "Invalid email address",},})} 
                     className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
                     placeholder="Email address"
                   />
