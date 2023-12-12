@@ -21,7 +21,10 @@ const SignUpScreen = () => {
 
   const navigate = useNavigate();
 
+  const [buttonPressed, setButtonPressed] = useState(false);
+
   const { loading, success, user, error } = useSelector((state) => state.register);
+  console.log(error);
 
   const { countries } = useSelector((state) => state.getCountries);
   const { states } = useSelector((state) => state.getStates);
@@ -56,6 +59,7 @@ const SignUpScreen = () => {
     };
 
     console.log(user);
+    setButtonPressed(true);
     dispatch(registerAction(user));
   };
 
@@ -403,7 +407,8 @@ const togglePasswordVisibility = () => {
                   </button>
                 </div>
                 <span className="text-red-500 text-xs italic">
-                  {error && "User already exists"}
+                {!user?.token && buttonPressed && !loading && "User already exists"}
+
                 </span>
                 <div className="relative">
                   <p className="text-gray-600 text-sm">

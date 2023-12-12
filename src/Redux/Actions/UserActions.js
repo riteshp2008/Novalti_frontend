@@ -16,8 +16,10 @@ export const loginAction = (user) => async (dispatch) => {
   try {
     dispatch({ type: Constants.USER_LOGIN_REQUEST });
     const data = await Service.loginUser(user);
+    console.log(data);
     dispatch({ type: Constants.USER_LOGIN_SUCCESS, payload: data });
   } catch (error) {
+    console.log(error);
     dispatch({ type: Constants.USER_LOGIN_FAILURE, payload: error });
   }
 };

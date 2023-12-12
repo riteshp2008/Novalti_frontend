@@ -9,7 +9,7 @@ export const registerUser = async (user) => {
     localStorage.setItem("user", JSON.stringify(data));
     return data;
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
   }
 };
 
@@ -20,7 +20,7 @@ try {
   localStorage.setItem("user", JSON.stringify(data));
   return data;
 } catch (error) {
-    console.log(error);
+  console.log(error.response.data);
 }
 };
 

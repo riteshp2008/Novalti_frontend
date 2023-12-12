@@ -11,6 +11,8 @@ const LoginScreen = () => {
     register,
     formState: { errors },
   } = useForm();
+   
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   const { user, loading, success, error } = useSelector((state) => state.login);
 
@@ -19,11 +21,12 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
+    setButtonPressed(true);
     dispatch(loginAction(data));
   };
 
+  
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -119,7 +122,7 @@ const LoginScreen = () => {
                   </button>
                 </div>
                 <span className="text-red-500 text-xs italic">
-                  {error && "Invalid email or password"}
+                  {!user?.token && buttonPressed && !loading && "Invalid email or password"}
                 </span>
                 <div className="relative">
                   <p className="text-gray-600 text-sm">
