@@ -119,7 +119,7 @@ const LoginScreen = () => {
                   </button>
                 </div>
                 <span className="text-red-500 text-xs italic">
-                  {!success && !user && "Invalid email or password"}
+                  {error && "Invalid email or password"}
                 </span>
                 <div className="relative">
                   <p className="text-gray-600 text-sm">

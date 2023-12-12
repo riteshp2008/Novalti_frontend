@@ -21,7 +21,7 @@ const SignUpScreen = () => {
 
   const navigate = useNavigate();
 
-  const { loading, success, user } = useSelector((state) => state.register);
+  const { loading, success, user, error } = useSelector((state) => state.register);
 
   const { countries } = useSelector((state) => state.getCountries);
   const { states } = useSelector((state) => state.getStates);
@@ -402,10 +402,13 @@ const togglePasswordVisibility = () => {
                     {loading ? "Loading..." : "Register"}
                   </button>
                 </div>
+                <span className="text-red-500 text-xs italic">
+                  {error && "User already exists"}
+                </span>
                 <div className="relative">
                   <p className="text-gray-600 text-sm">
                     Already have an account?{" "}
-                    <Link to="/" className="text-blue-500">
+                    <Link to="/" className="text-blue-500 font-semibold">
                       Sign In
                     </Link>
                   </p>
