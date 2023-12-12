@@ -32,6 +32,6 @@ export const getUsers = async () => {
 };
 
 export const logoutUser = async () => {
-  localStorage.removeItem("user");
+  localStorage.clear();
   return true;
 };

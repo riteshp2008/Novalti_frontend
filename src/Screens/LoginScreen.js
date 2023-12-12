@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../Redux/Actions/UserActions";
+import { helper } from "../helper/helper";
 
 const LoginScreen = () => {
   const {
@@ -19,7 +20,9 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
+    helper();
     dispatch(loginAction(data));
+    Navigate("/users");
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +34,6 @@ const LoginScreen = () => {
   useEffect(() => {
     if (success && user) {
       localStorage.setItem("user", JSON.stringify(user));
-      window.location.href = "/users";
     }
   }, [success]);
   console.log(errors);

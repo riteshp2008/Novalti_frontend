@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const userInfo = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : null;

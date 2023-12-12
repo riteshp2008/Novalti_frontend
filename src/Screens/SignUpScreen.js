@@ -7,6 +7,7 @@ import {
 } from "../Redux/Actions/LocationActions";
 import { Link, useNavigate } from "react-router-dom";
 import { registerAction } from "../Redux/Actions/UserActions";
+import { helper } from "../helper/helper";
 
 const SignUpScreen = () => {
   const [selectedCountry, setSelectedCountry] = React.useState(null);
@@ -53,7 +54,7 @@ const SignUpScreen = () => {
     };
 
     console.log(user);
-
+    helper();
     dispatch(registerAction(user));
   };
 
@@ -107,6 +108,7 @@ const togglePasswordVisibility = () => {
                       type="text"
                       {...register("firstName", {
                         required: "First Name is required",
+                        minLength:{"value":5,"message":"minimum 5 characters required"},
                       })}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
                       placeholder="First Name"
@@ -132,6 +134,7 @@ const togglePasswordVisibility = () => {
                       type="text"
                       {...register("lastName", {
                         required: "Last Name is required",
+                        minLength:{"value":5,"message":"minimum 5 characters required"},
                       })}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
                       placeholder="Last Name"
